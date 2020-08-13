@@ -1,0 +1,8 @@
+@media(max-width: 640px){
+body{
+    max-width: 640px;
+    position: relative;
+    left:30px;
+    top:0;
+}
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>左右过度切换的登录注册页面演示</title>
+    <script type="text/javascript" src="js/jquery-3.5.0.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="loadall()" >
+<div class="content">
+    <div class="form sign-in">
+        <h2>欢迎回来</h2>
+        <label>
+            <span>用户名</span>
+            <input type="text" id="loginName"/>
+        </label>
+        <label>
+            <span>密码</span>
+            <input type="password" id="loginPassword"/>
+        </label>
+        <p class="forgot-pass"><a href="remima.html">忘记密码？</a></p>
+        <button type="button" class="submit" onclick="login()">登 录</button>
+    </div>
+    <div class="sub-cont">
+        <div class="img">
+            <div class="img__text m--up">
+                <h2>还未注册？</h2>
+                <p>立即注册，发现大量机会！</p>
+            </div>
+            <div class="img__text m--in">
+                <h2>已有帐号？</h2>
+                <p>有帐号就登录吧，好久不见了！</p>
+            </div>
+            <div class="img__btn">
+                <span class="m--up">注 册</span>
+                <span class="m--in">登 录</span>
+            </div>
+        </div>
+        <div class="form sign-up">
+            <h2>立即注册</h2>
+            <label>
+                <span>用户名</span><p id="msg1"></p>
+                <input type="text" id="registName"/>
+            </label>
+            <form>
+                <span>邮箱</span>
+                <input type="email" id="remail" autocomplete="off" required/>
+            </form>
+            <label>
+                <span>密码</span><p id="msg2"></p>
+                <input type="password" id="rpassword"/>
+            </label>
+
+
+            <button type="button" class="submit" onclick="regist()">注 册</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#registName").blur(function () {
+            if($(this).val()==""){
+                $("#msg1").html("用户名不能为空~").css("font-size","6px").css("color","#d8505c").css("float","right")
+                    .css("padding-bottom","-10px");
+                $(this).focus();
+                return;
+            }
+        })
+    });
+    $(document).ready(function () {
+        $("#rpassword").blur(function () {
+            if($(this).val()==""){
+                $("#msg2").html("密码不能为空~").css("font-size","6px").css("color","#d8505c").css("float","right")
+                    .css("padding-bottom","-10px");
+                $(this).focus();
+                return;
+            }
+        })
+    });
+</script>
+<script type="text/javascript">
+    var db=openDatabase("contentdbb","",'local_database demo1',204800);
+    function regist() {
+        var name=document.getElementById("registName").value;
+        var email=document.getElementById("remail").value;
+        var psd=document.getElementById("rpassword").value;
+        db.transaction(function (t) {
+            t.executeSql('insert into contact values(?,?,?)',[name,email,psd],onSuccess,onError)
+        })
+    }
+    function onSuccess(tx,rs) {
+        var rpss=document.getElementById("rpassword").value;
+        if(rpss=="") {
+            alert("注册失败~~");
+        }else if(rpss!=""){
+        alert("注册成功！");}
+        loadall();
+    }
+    function onError(tx,error) {
+    }
+    function login() {
+        var lname=document.getElementById("loginName").value;
+        var lpsd=document.getElementById("loginPassword").value;
+        sessionStorage.setItem("username",lname);
+        // location.href="index.html";
+        db.transaction(function (t) {
+            t.executeSql("select * from contact where name='"+lname+"' and psd='"+lpsd+"';", [], function (tx, rs) {
+                if (rs.rows.length > 0) {
+                    confirm("登陆成功，跳转至成功页面");
+                    location.href='indexlogin.html';
+                }else {
+                    alert("登录失败！")
+                }
+            });
+        })
+    }
+    function loadall() {
+        db.transaction(function (t) {
+            t.executeSql('create table if not exists contact(name,email,psd)',[]);
+        })
+    }
+</script>
+</body>
+
+</html>

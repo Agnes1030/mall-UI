@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="utf-8" />
+	<title>个人信息</title>
+	<link rel="stylesheet" type="text/css" href="css/public.css"/>
+	<link rel="stylesheet" type="text/css" href="css/mygrxx.css" />
+	<style>
+		#clock{
+			position: relative;
+			top:-80px;
+			left: 900px;
+		}
+	</style>
+	<!--<script type="text/javascript">-->
+	<!--var t = null;-->
+
+	<!--function time() {-->
+	<!--dt = new Date();-->
+	<!--var y = dt.getFullYear();-->
+	<!--var h = dt.getHours();-->
+	<!--var m = dt.getMinutes();-->
+	<!--var s = dt.getSeconds();-->
+	<!--document.getElementById("timeShow").innerHTML =  y + "年" + h + "时" + m + "分" + s + "秒";-->
+	<!--t = setTimeout(time, 1000);-->
+	<!--}-->
+
+	<!--window.onload = function () {-->
+	<!--time()-->
+	<!--}-->
+	<!--</script>-->
+</head>
+<body>
+<!------------------------------head------------------------------>
+<div class="head ding">
+	<div class="wrapper clearfix">
+		<div class="clearfix" id="top">
+			<h1 class="fl"><a href="loginandregister.html"><img src="images/logo.png"/></a></h1>
+			<canvas id="clock" width="200" height="200"></canvas>
+			<div class="fr clearfix" id="top1">
+
+				<!--<div class="btn fl clearfix">-->
+				<!--<a href="mygxin.html"><img src="img/grzx.png"/></a>-->
+				<!--<a href="#" class="er1"><img src="img/ewm.png"/></a>-->
+				<!--<a href="cart.html"><img src="img/gwc.png"/></a>-->
+				<!--<p><a href="#"><img src="img/smewm.png"/></a></p>-->
+				<!--</div>-->
+			</div>
+		</div>
+		<!--<ul class="clearfix" id="bott">-->
+		<!--<li><a href="index.html">首页</a></li>-->
+		<!--<li>-->
+		<!--<a href="#">所有商品</a>-->
+		<!--<div class="sList">-->
+		<!--<div class="wrapper  clearfix">-->
+		<!--<a href="paint.html">-->
+		<!--<dl>-->
+		<!--<dt><img src="img/nav1.jpg"/></dt>-->
+		<!--<dd>浓情欧式</dd>-->
+		<!--</dl>-->
+		<!--</a>-->
+		<!--<a href="paint.html">-->
+		<!--<dl>-->
+		<!--<dt><img src="img/nav2.jpg"/></dt>-->
+		<!--<dd>浪漫美式</dd>-->
+		<!--</dl>-->
+		<!--</a>-->
+		<!--<a href="paint.html">-->
+		<!--<dl>-->
+		<!--<dt><img src="img/nav3.jpg"/></dt>-->
+		<!--<dd>雅致中式</dd>-->
+		<!--</dl>-->
+		<!--</a>-->
+		<!--<a href="paint.html">-->
+		<!--<dl>-->
+		<!--<dt><img src="img/nav6.jpg"/></dt>-->
+		<!--<dd>简约现代</dd>-->
+		<!--</dl>-->
+		<!--</a>-->
+		<!--<a href="paint.html">-->
+		<!--<dl>-->
+		<!--<dt><img src="img/nav7.jpg"/></dt>-->
+		<!--<dd>创意装饰</dd>-->
+		<!--</dl>-->
+		<!--</a>-->
+		<!--</div>-->
+		<!--</div>-->
+		<!--</li>-->
+		<!--<li>-->
+		<!--<a href="flowerDer.html">装饰摆件</a>-->
+		<!--<div class="sList2">-->
+		<!--<div class="clearfix">-->
+		<!--<a href="proList.html">干花花艺</a>-->
+		<!--</div>-->
+		<!--</div>-->
+		<!--</li>-->
+		<!--<li><a href="paint.html">墙式壁挂</a></li>-->
+		<!--<li><a href="idea.html">创意家居</a></li>-->
+		<!--</ul>-->
+	</div>
+</div>
+<!------------------------------idea------------------------------>
+<div class="address mt">
+	<div class="wrapper clearfix">
+		<a href="loginandregister.html" class="fl">登录</a>
+		<span>/</span>
+		<a href="mygxin.html" class="on">个人信息</a>
+	</div>
+</div>
+
+<!------------------------------Bott------------------------------>
+<div class="Bott">
+	<div class="wrapper clearfix">
+		<div class="zuo fl">
+			<h3>
+				<a href="#"><img src="images/tx.png"/></a>
+			</h3>
+			<div>
+				<h4>我的交易</h4>
+				<ul>
+					<li><a href="cart.html">我的购物车</a></li>
+					<li><a href="myorderq.html">我的订单</a></li>
+				</ul>
+				<h4>个人中心</h4>
+				<ul>
+					<li><a href="address.html">地址管理</a></li>
+				</ul>
+				<h4>账户管理</h4>
+				<ul>
+					<li  class="on"><a href="remima.html">修改密码</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="you fl">
+			<h2>修改密码</h2>
+			<form action="#" method="get" class="remima">
+				<p><span>原密码：</span><input type="text" /></p>
+				<p class="op">输入原密码</p>
+				<p><span>新密码：</span><input type="text" id="pw"  onblur="password()">
+				<p class="op">6-16个字符，需使用字母、数字或符号组合，不能使用纯数字、纯字母、纯符号~</p>
+				<p><span >验证码：</span><input type="text" id="input"/><span id="msg" onclick="show()"></span></p>
+				<p class="op">按右图输入验证码</p>
+				<input type="submit"  onclick="yanzheng()" value="提交" />
+			</form>
+		</div>
+	</div>
+</div>
+
+<!--返回顶部-->
+<div class="gotop">
+	<a href="cart.html">
+		<dl>
+			<dt><img src="images/gt1.png"/></dt>
+			<dd>去购<br />物车</dd>
+		</dl>
+	</a>
+	<a href="#" class="dh">
+		<dl>
+			<dt><img src="images/gt2.png"/></dt>
+			<dd>联系<br />客服</dd>
+		</dl>
+	</a>
+	<a href="mygxin.html">
+		<dl>
+			<dt><img src="images/gt3.png"/></dt>
+			<dd>个人<br />中心</dd>
+		</dl>
+	</a>
+	<a href="#" class="toptop" style="display: none">
+		<dl>
+			<dt><img src="images/gt4.png"/></dt>
+			<dd>返回<br />顶部</dd>
+		</dl>
+	</a>
+	<p>400-800-8200</p>
+</div>
+<!--footer-->
+<div class="footer">
+	<div class="top">
+		<div class="wrapper">
+			<div class="clearfix">
+				<a href="#2" class="fl"><img src="images/foot1.png"/></a>
+				<span class="fl">7天无理由退货</span>
+			</div>
+			<div class="clearfix">
+				<a href="#2" class="fl"><img src="images/foot2.png"/></a>
+				<span class="fl">15天免费换货</span>
+			</div>
+			<div class="clearfix">
+				<a href="#2" class="fl"><img src="images/foot3.png"/></a>
+				<span class="fl">满599包邮</span>
+			</div>
+			<div class="clearfix">
+				<a href="#2" class="fl"><img src="images/foot4.png"/></a>
+				<span class="fl">手机特色服务</span>
+			</div>
+		</div>
+	</div>
+	<p class="dibu">MDH家居 宁波财经学院<br>
+		违法和不良信息举报电话：400-800-8200
+		©版权归马恒敏 1928510224 陈镕溶1928510209所有
+</div>
+<script src="js/jquery-3.5.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/user.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	function password(){
+		var reg=/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,16}$/;
+
+		if( !reg.test( document.getElementById("pw").value ) )
+			alert("密码不合符要求");
+		else
+			alert("密码强度好");
+	}
+</script>
+<script>
+
+</script>
+<script src="js/index1.js"></script>
+</body>
+</html>

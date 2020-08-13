@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>详情页</title>
+    <style>
+        body {
+            width: 640px;
+            height: 2000px;
+            margin: 0 auto;
+        }
+		a{
+			text-decoration: none;
+			color: #C10000;
+		}
+        .address {
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px solid #DBDBDB;
+        }
+
+        .address a,
+        .address span {
+            float: left;
+            color: #777;
+        }
+
+        .address span {
+            margin: 0 20px;
+        }
+
+        .address a.on {
+            color: #262626;
+        }
+
+        .wrapper {
+            width: 640px;
+            margin: 0 auto;
+        }
+
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+            height: 0;
+            line-height: 0;
+            visibility: hidden;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+        .detCon {
+            margin-top: 20px;
+        }
+
+        .detCon .proDet .proImg > img {
+
+        }
+
+        .detCon .smallImg > img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .detCon .proImg {
+            width: auto;
+        }
+
+        .detCon .intro {
+            width: 275px;
+        }
+
+        .detCon .intro .title h4 {
+            height: 28px;
+            line-height: 28px;
+            font-weight: normal;
+            font-size: 22px;
+        }
+
+        .detCon .intro .title p {
+            margin: 10px 0;
+            color: #777;
+        }
+
+        .detCon .intro .title span {
+            font-size: 22px;
+            color: #C10000;
+        }
+
+        .detCon .intro .proIntro {
+            width: auto;
+        }
+
+        .detCon .btn {
+            padding: 0 30px;
+        }
+
+        .title {
+            width: 300px;
+            position: absolute;
+            top: 50px;
+
+        }
+
+        .smallImg {
+            margin-top: 20px;
+        }
+
+        .smallImg img {
+            float: left;
+        }
+
+        .proIntro .smallImg p {
+            padding: 2px;
+            margin-right: 20px;
+            border: 1px solid #fff;
+        }
+
+        .proIntro .smallImg img {
+            width: 35px;
+        }
+
+        .proImg .smallImg img {
+            width: 50px;
+            margin-right: 20px;
+        }
+
+        .proIntro .smallImg {
+            margin: 20px 0 35px;
+            position: relative;
+        }
+
+        .proIntro .smallImg p.on {
+            border: 1px solid #C10000;
+        }
+
+        .proIntro .smallImg p {
+            border: 1px solid #fff;
+        }
+
+        .proIntro .smallImg span {
+            position: absolute;
+            top: 55px;
+            left: 0;
+            padding: 5px;
+            border: 1px solid #dbdbdb;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .gotop a {
+            display: block;
+            width: 48px;
+            height: 48px;
+            line-height: 38px;
+            background: #f4f4f4;
+            margin-bottom: 10px;
+            border: 1px solid #d6d6d6;
+            cursor: pointer;
+        }
+
+        .gotop dl dt {
+            margin: 0 auto;
+            width: 20px;
+            padding-top: 10px;
+        }
+
+        .gotop dl.goCart {
+            position: relative;
+        }
+
+        .gotop dl.goCart span {
+            position: absolute;
+            top: -9px;
+            right: -8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 8px;
+            background: #c10000;
+            color: #fff;
+            text-align: center;
+            line-height: 16px;
+        }
+
+        .gotop dl dd {
+            display: none;
+            background: #a10000;
+            height: 41px;
+            width: 41px;
+            color: #fff;
+            padding: 8px 0 0 10px;
+            line-height: 15px;
+        }
+
+        .btns p, .changeBtn p {
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btns p.buy, .changeBtn p.buy {
+            background: #C10000;
+            color: #fff;
+        }
+
+        .btns p.cart, .changeBtn p.cart {
+            border: 1px solid #000;
+        }
+
+        .btns p.buy, .changeBtn p.buy {
+            background: #C10000;
+            color: #fff;
+        }
+
+        .gotop p {
+            border: 1px solid #A10000;
+            padding: 10px;
+            position: absolute;
+            background: #f4f4f4;
+            top: 66px;
+            left: -130px;
+            display: none;
+        }
+
+        .gotop p:before {
+            position: absolute;
+            top: 50%;
+            right: -6px;
+            width: 0;
+            margin-top: -5px;
+            height: 0;
+            margin-left: -5px;
+            vertical-align: middle;
+            content: " ";
+            border-bottom: 5px solid transparent;
+            border-left: 5px solid #a10000;
+            border-top: 5px solid transparent;
+        }
+
+        .like {
+            position: relative;
+            top: -290px;
+            max-width: 640px;
+            background: #ece9e9;
+            margin: 5px 0;
+        }
+
+        .like h4 {
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        dd {
+            font-size: 10px;
+            margin-left: -3px;
+        }
+
+        div.likeList {
+            margin-left: 10px;
+        }
+
+        .likeList dl {
+            display: inline-block;
+            float: left;
+        }
+
+        /*.likeList dt img{*/
+        /*margin-left: 4px;*/
+        /*}*/
+        .cart .logo {
+            margin-top: 30px;
+        }
+
+        .cart .logo h1 .top {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .cart div.site {
+            height: 65px;
+            line-height: 65px;
+            font-size: 16px;
+        }
+
+        .fr {
+            float: right;
+            margin-top: 165px;
+        }
+
+        .aa {
+            position: relative;
+            top: -150px;
+        }
+
+        .btns p.cart, .changeBtn p.cart {
+            border: 1px solid #000;
+        }
+
+        .cart div.site p a {
+            text-decoration: underline;
+        }
+
+        .cart div.site .top {
+            margin-left: 290px;
+            margin-top: 10px;
+        }
+
+        .proIntro .num p.please {
+            margin-left: 20px;
+            color: #C10000;
+            line-height: 27px;
+            display: none;
+        }
+
+        .msgL {
+            width: 470px;
+        }
+
+        .msgL .msgTit {
+            border-top: 1px solid #dbdbdb;
+            border-bottom: 1px solid #dbdbdb;
+            height: 40px;
+            line-height: 40px;
+            margin-bottom: 30px;
+        }
+
+        .msgL .msgTit a {
+            float: left;
+            width: 90px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .msgL .msgTit a.on {
+            border-bottom: 1px solid #c10000;
+        }
+
+        .msgL .msgAll .eva {
+            display: none;
+        }
+
+        .introMsg {
+            position: relative;
+            top: -120px;
+        }
+
+        .msgR {
+            border: 1px solid #dbdbdb;
+            position: relative;
+            top: -170px;
+        }
+
+        .msgR h4 {
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: #f6f6f6;
+            font-weight: normal;
+        }
+
+        /*data-src{*/
+        /*width: 300px;*/
+        /*height: 300px;*/
+        /*}*/
+        .footer {
+            width: 640px;
+            margin: 0 auto;
+
+        }
+
+        .footer .top {
+            padding: 30px 0;
+            border-top: 1px solid #DBDBDB;
+            border-bottom: 1px solid #DBDBDB;
+        }
+
+        .footer .top .wrapper {
+            display: flex;
+        }
+
+        .footer .top .wrapper div {
+            flex: 1 1 25%;
+            border-right: 1px solid #dbdbdb;
+        }
+
+        .footer .top .wrapper div:last-child {
+            border-right: none;
+        }
+
+        .footer .top .wrapper div a img {
+            display: block;
+        }
+
+        .footer .top .wrapper div a {
+            margin-left: 25%;
+        }
+
+        .footer .top .wrapper div span {
+            margin-top: 15px;
+            margin-left: 10px;
+            display: block;
+            font-size: 16px;
+        }
+
+        .footer p.dibu {
+            background: #000;
+            padding: 30px 0;
+            text-align: center;
+            color: #fff;
+            margin: 0 auto;
+        }
+
+        .footer {
+            position: relative;
+            top: -290px;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+<!-----------------address------------------------------->
+<div class="address">
+    <div class="wrapper clearfix">
+        <a href="indexlogin.html">首页</a>
+        <span>/</span>
+        <a href="category.html">装饰摆件</a>
+        <span>/</span>
+        <a href="category.html">干花花艺</a>
+        <!--<span>/</span>-->
+        <!--<a href="#" class="on">【卖得好】非洲菊仿真花干花</a>-->
+    </div>
+</div>
+<!-----------------------Detail------------------------------>
+<div class="detCon">
+    <div class="proDet wrapper">
+        <div class="proCon clearfix">
+            <div class="proImg fl">
+                <img class="det" src="images/temp/proDet.jpg" style="width: 300px;height: 300px;"/>
+                <div class="smallImg clearfix">
+                    <img src="images/temp/proDet01.jpg" data-src="images/temp/proDet01_big.jpg">
+                    <img src="images/temp/proDet02.jpg" data-src="images/temp/proDet02_big.jpg">
+                    <img src="images/temp/proDet03.jpg" data-src="images/temp/proDet03_big.jpg">
+                    <img src="images/temp/proDet04.jpg" data-src="images/temp/proDet04_big.jpg">
+                </div>
+            </div>
+            <div class="fr intro">
+                <div class="title">
+                    <h4>[MDH]非洲菊仿真花干花</h4>
+                    <p>[适合放室内、卧室、书房、餐桌、办公室、客厅、电视柜等地方][无理由退换货][包邮][白色现代简约花瓶]</p>
+                    <span>￥59.90</span>
+                </div>
+                <div class="proIntro">
+                    <p>颜色分类</p>
+                    <div class="smallImg clearfix categ">
+                        <p class="fl"><img src="images/temp/prosmall01.jpg" alt="白瓷花瓶+20支快乐花"
+                                           data-src="images/temp/proBig01.jpg"></p>
+                        <p class="fl"><img src="images/temp/prosmall02.jpg" alt="白瓷花瓶+20支兔尾巴草"
+                                           data-src="images/temp/proBig02.jpg"></p>
+                        <p class="fl"><img src="images/temp/prosmall03.jpg" alt="20支快乐花"
+                                           data-src="images/temp/proBig03.jpg"></p>
+                        <p class="fl"><img src="images/temp/prosmall04.jpg" alt="20支兔尾巴草"
+                                           data-src="images/temp/proBig04.jpg"></p>
+                    </div>
+                    <p>数量&nbsp;&nbsp;库存<span style="color: red">2096</span>件</p>
+                    <div class="num clearfix">
+                        <img class="fl sub" src="images/temp/sub.jpg">
+                        <span class="fl" contentEditable="true">&nbsp;&nbsp;1&nbsp;&nbsp;</span>
+                        <img class="fl add" src="images/temp/add.jpg">
+                        <p class="please fl">请选择商品属性!</p>
+                    </div>
+                </div>
+                <div class="btns clearfix">
+                    <a href="#2"><p class="buy fl">立即购买</p></a>
+                    <a href="cart.html"><p class="cart fr aa">加入购物车</p></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="introMsg wrapper clearfix">
+    <div class="msgL fl">
+        <div class="msgTit clearfix">
+            <a class="on">商品详情</a>
+            <a>所有评价</a>
+        </div>
+        <div class="msgAll">
+            <div class="msgImgs">
+                <img src="images/temp/det01.jpg" style="width: 470px;height: 470px;">
+                <img src="images/temp/det02.jpg" style="width: 470px;height: 470px;">
+
+            </div>
+            <div class="eva">
+                <div class="per clearfix">
+                    <img class="fl" src="images/temp/per01.jpg">
+                    <div class="perR fl">
+                        <p>顾客1</p>
+                        <p>不好意思评价晚了，产品很好，价格比玻璃品便宜，没有我担心的杂色，发货快，包装好，全5分</p>
+                        <div class="clearfix">
+                            <p><img src="images/temp/eva01.jpg">
+                                <img src="images/temp/eva02.jpg">
+                                <img src="images/temp/eva03.jpg">
+                                <img src="images/temp/eva04.jpg">
+                                <img src="images/temp/eva05.jpg"></p>
+                        </div>
+                        <p><span>2020年12月27日08:31</span><span>颜色分类：大中小三件套（不含花）</span></p>
+                    </div>
+                </div>
+                <div class="per clearfix">
+                    <img class="fl" src="images/temp/per02.jpg">
+                    <div class="perR fl">
+                        <p>顾客2</p>
+                        <p>花瓶超级棒，我看图以为是光面的，收货发现是磨砂，但感觉也超有质感，很喜欢。磨砂上面还有点纹路，不过觉得挺自然的，不影响美观。包装也很好，绝对不会磕碎碰坏，好评！</p>
+                        <p><span>2020年12月27日08:31</span><span>颜色分类：大中小三件套（不含花）</span></p>
+                    </div>
+                </div>
+                <div class="per clearfix">
+                    <img class="fl" src="images/temp/per01.jpg">
+                    <div class="perR fl">
+                        <p>顾客3</p>
+                        <p>不好意思评价晚了，产品很好，价格比玻璃品便宜，没有我担心的杂色，发货快，包装好，全5分</p>
+                        <div class="clearfix">
+                            <p><img src="images/temp/eva01.jpg">
+                                <img src="images/temp/eva02.jpg">
+                                <img src="images/temp/eva03.jpg">
+                                <img src="images/temp/eva04.jpg">
+                                <img src="images/temp/eva05.jpg"></p>
+                        </div>
+                        <p><span>2020年12月27日08:31</span><span>颜色分类：大中小三件套（不含花）</span></p>
+                    </div>
+                </div>
+                <div class="per clearfix">
+                    <img class="fl" src="images/temp/per02.jpg">
+                    <div class="perR fl">
+                        <p>顾客4</p>
+                        <p>花瓶超级棒，我看图以为是光面的，收货发现是磨砂，但感觉也超有质感，很喜欢。磨砂上面还有点纹路，不过觉得挺自然的，不影响美观。包装也很好，绝对不会磕碎碰坏，好评！</p>
+                        <p><span>2020年12月27日08:31</span><span>颜色分类：大中小三件套（不含花）</span></p>
+                    </div>
+                </div>
+                <div class="per clearfix">
+                    <img class="fl" src="images/temp/per01.jpg">
+                    <div class="perR fl">
+                        <p>顾客5</p>
+                        <p>不好意思评价晚了，产品很好，价格比玻璃品便宜，没有我担心的杂色，发货快，包装好，全5分</p>
+                        <div class="clearfix">
+                            <p><img src="images/temp/eva01.jpg">
+                                <img src="images/temp/eva02.jpg">
+                                <img src="images/temp/eva03.jpg">
+                                <img src="images/temp/eva04.jpg">
+                                <img src="images/temp/eva05.jpg"></p>
+                        </div>
+                        <p><span>2020年12月27日08:31</span><span>颜色分类：大中小三件套（不含花）</span></p>
+                    </div>
+                </div>
+                <div class="per clearfix">
+                    <img class="fl" src="images/temp/per02.jpg">
+                    <div class="perR fl">
+                        <p>顾客6</p>
+                        <p>花瓶超级棒，我看图以为是光面的，收货发现是磨砂，但感觉也超有质感，很喜欢。磨砂上面还有点纹路，不过觉得挺自然的，不影响美观。包装也很好，绝对不会磕碎碰坏，好评！</p>
+                        <p><span>2020年12月27日08:31</span><span>颜色分类：大中小三件套（不含花）</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="msgR fr">
+        <h4>为你推荐</h4>
+        <div class="seeList">
+            <a href="#">
+                <dl>
+                    <dt><img src="images/temp/see01.jpg"></dt>
+                    <dd>【卖得好】复古文艺风玻璃花瓶</dd>
+                    <dd>￥999</dd>
+                </dl>
+            </a>
+            <a href="#">
+                <dl>
+                    <dt><img src="images/temp/see02.jpg"></dt>
+                    <dd>【卖得好】复古文艺风玻璃花瓶</dd>
+                    <dd>￥999</dd>
+                </dl>
+            </a>
+            <a href="#">
+                <dl>
+                    <dt><img src="images/temp/see03.jpg"></dt>
+                    <dd>【卖得好】复古文艺风玻璃花瓶</dd>
+                    <dd>￥999</dd>
+                </dl>
+            </a>
+            <a href="#">
+                <dl>
+                    <dt><img src="images/temp/see04.jpg"></dt>
+                    <dd>【卖得好】复古文艺风玻璃花瓶</dd>
+                    <dd>￥999</dd>
+                </dl>
+            </a>
+        </div>
+
+    </div>
+</div>
+<div class="like">
+    <h4>猜你喜欢</h4>
+    <div class="bottom">
+        <div class="imgCon bd">
+            <div class="likeList clearfix">
+                <div>
+                    <a href="proDetail.html">
+                        <dl>
+                            <dt><img src="images/temp/like01.jpg" style="width: 120px;height: 120px;"></dt>
+                            <dd>复古文艺风玻璃花瓶</dd>
+                            <dd>￥999</dd>
+                        </dl>
+                    </a>
+                    <a href="proDetail.html">
+                        <dl>
+                            <dt><img src="images/temp/like02.jpg" style="width: 120px;height: 120px;"></dt>
+                            <dd>复古文艺风玻璃花瓶</dd>
+                            <dd>￥999</dd>
+                        </dl>
+                    </a>
+                    <a href="proDetail.html">
+                        <dl>
+                            <dt><img src="images/temp/like03.jpg" style="width: 120px;height: 120px;"></dt>
+                            <dd>复古文艺风玻璃花瓶</dd>
+                            <dd>￥999</dd>
+                        </dl>
+                    </a>
+                    <a href="proDetail.html">
+                        <dl>
+                            <dt><img src="images/temp/like04.jpg" style="width: 120px;height: 120px;"></dt>
+                            <dd>复古文艺风玻璃花瓶</dd>
+                            <dd>￥999</dd>
+                        </dl>
+                    </a>
+                    <a href="proDetail.html" class="last">
+                        <dl>
+                            <dt><img src="images/temp/like05.jpg" style="width: 120px;height: 120px;"></dt>
+                            <dd>复古文艺风玻璃花瓶</dd>
+                            <dd>￥999</dd>
+                        </dl>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--返回顶部-->
+<!--<div class="gotop">-->
+<!--<a href="cart.html">-->
+<!--<dl class="goCart">-->
+<!--<dt><img src="images/gt1.png"/></dt>-->
+<!--<dd>去购<br />物车</dd>-->
+<!--<span>1</span>-->
+<!--</dl>-->
+<!--</a>-->
+<!--<a href="#" class="dh">-->
+<!--<dl>-->
+<!--<dt><img src="images/gt2.png"/></dt>-->
+<!--<dd>联系<br />客服</dd>-->
+<!--</dl>-->
+<!--</a>-->
+<!--<a href="mygxin.html">-->
+<!--<dl>-->
+<!--<dt><img src="images/gt3.png"/></dt>-->
+<!--<dd>个人<br />中心</dd>-->
+<!--</dl>-->
+<!--</a>-->
+<!--<a href="#" class="toptop" style="display: none;">-->
+<!--<dl>-->
+<!--<dt><img src="images/gt4.png"/></dt>-->
+<!--<dd>返回<br />顶部</dd>-->
+<!--</dl>-->
+<!--</a>-->
+<!--<p>400-800-8200</p>-->
+<!--</div>-->
+<!--<div class="msk"></div>-->
+<!--footer-->
+<div class="footer">
+    <div class="top">
+        <div class="wrapper">
+            <div class="clearfix">
+                <a href="#2" class="fl"><img src="images/foot1.png"/></a>
+                <span class="fl">7天无理由退货</span>
+            </div>
+            <div class="clearfix">
+                <a href="#2" class="fl"><img src="images/foot2.png"/></a>
+                <span class="fl">15天免费换货</span>
+            </div>
+            <div class="clearfix">
+                <a href="#2" class="fl"><img src="images/foot3.png"/></a>
+                <span class="fl">满599包邮</span>
+            </div>
+            <div class="clearfix">
+                <a href="#2" class="fl"><img src="images/foot4.png"/></a>
+                <span class="fl">手机特色服务</span>
+            </div>
+        </div>
+    </div>
+    <p class="dibu">MDH家居 宁波财经学院<br>
+        违法和不良信息举报电话：400-800-8200
+        ©版权归 马恒敏 1928510224 陈镕溶1928510209所有
+</div>
+<script src="js/jquery-3.5.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/nav.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/pro.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/cart.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

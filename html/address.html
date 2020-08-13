@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8"/>
+    <title>MDH</title>
+    <link rel="stylesheet" type="text/css" href="css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="css/mygxin.css"/>
+    <script type="text/javascript"
+            src="http://webapi.amap.com/maps?v=1.3&key=0250860ccb5953fa5d655e8acf40ebb7&plugin=AMap.Geocoder"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+    <style>
+        #map{
+            width: 200px;
+            height: 50px;
+            border: 1px solid #95999c;
+            position: relative;
+            top: 20px;
+            left: 0px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var t = null;
+
+        function time() {
+            dt = new Date();
+            var y = dt.getFullYear();
+            var h = dt.getHours();
+            var m = dt.getMinutes();
+            var s = dt.getSeconds();
+            document.getElementById("timeShow").innerHTML =  y + "年" + h + "时" + m + "分" + s + "秒";
+            t = setTimeout(time, 1000);
+        }
+
+        window.onload = function () {
+            time()
+        }
+    </script>
+</head>
+<body>
+<!------------------------------head------------------------------>
+<div class="head ding">
+    <div class="wrapper clearfix">
+        <div class="clearfix" id="top">
+            <h1 class="fl"><a href="index.html"><img src="images/logo.png"/></a></h1>
+            <div class="fr clearfix" id="top1">
+                <form action="#" method="get" class="fl">
+                    <span id="timeShow"></span>
+                </form>
+                <!--<div class="btn fl clearfix">-->
+                <!--<a href="mygxin.html"><img src="img/grzx.png"/></a>-->
+                <!--<a href="#" class="er1"><img src="img/ewm.png"/></a>-->
+                <!--<a href="cart.html"><img src="img/gwc.png"/></a>-->
+                <!--<p><a href="#"><img src="img/smewm.png"/></a></p>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------idea------------------------------>
+<div class="address mt">
+    <div class="wrapper clearfix">
+        <a href="indexlogin.html" class="fl">首页</a>
+        <span>/</span>
+        <a href="mygxin.html">个人中心</a>
+        <span>/</span>
+        <a href="address.html" class="on">地址管理</a>
+    </div>
+</div>
+
+<!------------------------------Bott------------------------------>
+<div class="Bott">
+    <div class="wrapper clearfix">
+        <div class="zuo fl">
+            <h3>
+                <a href="#"><img src="images/tx.png"/></a>
+            </h3>
+            <div>
+                <h4>我的交易</h4>
+                <ul>
+                    <li><a href="cart.html">我的购物车</a></li>
+                    <li><a href="myorderq.html">我的订单</a></li>
+                </ul>
+                <h4>个人中心</h4>
+                <ul>
+                    <li class="on"><a href="address.html">地址管理</a></li>
+                </ul>
+                <h4>账户管理</h4>
+                <ul>
+                    <li><a href="remima.html">修改密码</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="you fl">
+            <h2>收货地址</h2>
+            <div class="add">
+                <div>
+                    <span id="map"></span>
+                    <a href="#2" id="addxad"><img src="images/jia.png"/></a>
+                    <span>添加新地址</span>
+                </div>
+                <div id="dizhi">
+                    <p>陈小镕</p>
+                    <p>1596****075</p>
+                    <p>浙江省 宁波市 海曙区</p>
+                    <p>宁波财经学院（315300）</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--编辑弹框-->
+<!--遮罩-->
+<div class="mask"></div>
+<div class="adddz">
+    <form action="#" method="get">
+        <div>
+            <input id="addressBox" type="text" value="请输入地址，例如宁波财经学院"/>
+            <input id="" type="button" onclick="geocoder();" value="搜索"/>
+        </div>
+        <div id='pointBox'>&nbsp;</div>
+        <div id='mapBox'></div>
+    </form>
+    <form action="#" method="get">
+        <div class="bc">
+            <input type="button" value="保存" onclick="dian()"/>
+            <input type="button" value="取消" onclick="xiao()"/>
+        </div>
+    </form>
+</div>
+<div class="readd">
+    <form action="#" method="get">
+        <input type="text" class="on" value="陈小镕"/>
+        <input type="text" value="159****6075"/>
+        <div class="city">
+            <select name="">
+                <option value="省份/自治区">浙江省</option>
+            </select>
+            <select>
+                <option value="城市/地区">宁波市</option>
+            </select>
+            <select>
+                <option value="区/县">海曙区</option>
+            </select>
+            <select>
+                <option value="配送区域">学院路</option>
+            </select>
+        </div>
+        <textarea name="" rows="" cols="" placeholder="详细地址">宁波财经学院</textarea>
+        <input type="text" placeholder="邮政编码" value="315300"/>
+        <div class="bc">
+            <input type="button" value="保存"/>
+            <input type="button" value="取消"/>
+        </div>
+    </form>
+</div>
+<!--返回顶部-->
+<div class="gotop">
+    <a href="cart.html">
+        <dl>
+            <dt><img src="images/gt1.png"/></dt>
+            <dd>去购<br/>物车</dd>
+        </dl>
+    </a>
+    <a href="#" class="dh">
+        <dl>
+            <dt><img src="images/gt2.png"/></dt>
+            <dd>联系<br/>客服</dd>
+        </dl>
+    </a>
+    <a href="mygxin.html">
+        <dl>
+            <dt><img src="images/gt3.png"/></dt>
+            <dd>个人<br/>中心</dd>
+        </dl>
+    </a>
+    <a href="#" class="toptop" style="display: none">
+        <dl>
+            <dt><img src="images/gt4.png"/></dt>
+            <dd>返回<br/>顶部</dd>
+        </dl>
+    </a>
+    <p>400-800-8200</p>
+</div>
+
+
+<!--footer-->
+<div class="footer">
+    <div class="top">
+        <div class="wrapper">
+            <div class="clearfix">
+                <a href="#2" class="fl"><img src="images/foot1.png"/></a>
+                <span class="fl">7天无理由退货</span>
+            </div>
+            <div class="clearfix">
+                <a href="#2" class="fl"><img src="images/foot2.png"/></a>
+                <span class="fl">15天免费换货</span>
+            </div>
+            <div class="clearfix">
+                <a href="#2" class="fl"><img src="images/foot3.png"/></a>
+                <span class="fl">满599包邮</span>
+            </div>
+            <div class="clearfix">
+                <a href="#2" class="fl"><img src="images/foot4.png"/></a>
+                <span class="fl">手机特色服务</span>
+            </div>
+        </div>
+    </div>
+    <p class="dibu">MDH家居 宁波财经学院<br>
+        违法和不良信息举报电话：400-800-8200
+        ©版权归马恒敏 1928510224 陈镕溶1928510209所有</p>
+</div>
+<script src="js/jquery-3.5.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/user.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="js/ditu.js"></script>
+
+</body>
+<script>
+    var result=document.getElementById("map");
+    result.innerHTML=sessionStorage.getItem("address");
+</script>
+</html>
